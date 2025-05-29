@@ -126,6 +126,66 @@ enum Model {
     temperature: 0.6,
     topK: 40,
     topP: 0.7,
+  ),
+
+  // New Qwen-based model entry
+  qwenDistill1_5B(
+    url:
+        'https://huggingface.co/litert-community/DeepSeek-R1-Distill-Qwen-1.5B/resolve/main/DeepSeek-R1-Distill-Qwen-1.5B_multi-prefill-seq_q8_ekv1280.task',
+    filename: 'DeepSeek-R1-Distill-Qwen-1.5B_multi-prefill-seq_q8_ekv1280.task',
+    displayName: 'Qwen 1.5B Distill (CPU / Remote)',
+    licenseUrl:
+        'https://huggingface.co/litert-community/DeepSeek-R1-Distill-Qwen-1.5B',
+    needsAuth: false,
+    preferredBackend: PreferredBackend.cpu,
+    modelType: ModelType.deepSeek,
+    temperature: 0.6,
+    topK: 40,
+    topP: 0.7,
+  ),
+
+  qwenDistill1_5BGpu(
+    url:
+        'https://huggingface.co/litert-community/DeepSeek-R1-Distill-Qwen-1.5B/resolve/main/DeepSeek-R1-Distill-Qwen-1.5B_multi-prefill-seq_q8_ekv1280.task',
+    filename: 'DeepSeek-R1-Distill-Qwen-1.5B_multi-prefill-seq_q8_ekv1280.task',
+    displayName: 'Qwen 1.5B Distill (GPU / Remote)',
+    licenseUrl:
+        'https://huggingface.co/litert-community/DeepSeek-R1-Distill-Qwen-1.5B',
+    needsAuth: false,
+    preferredBackend: PreferredBackend.gpu,
+    modelType: ModelType.deepSeek,
+    temperature: 0.6,
+    topK: 40,
+    topP: 0.7,
+  ),
+
+  // SmolLM-135M - Very small and efficient model
+  smolLM135MCpu(
+    url:
+        'https://huggingface.co/litert-community/SmolLM-135M-Instruct/resolve/main/SmolLM-135M-Instruct_multi-prefill-seq_q8_ekv1280.task',
+    filename: 'SmolLM-135M-Instruct_multi-prefill-seq_q8_ekv1280.task',
+    displayName: 'SmolLM 135M (CPU / Remote)',
+    licenseUrl: 'https://huggingface.co/litert-community/SmolLM-135M-Instruct',
+    needsAuth: false,
+    preferredBackend: PreferredBackend.cpu,
+    modelType: ModelType.general,
+    temperature: 0.2,
+    topK: 40,
+    topP: 0.9,
+  ),
+
+  smolLM135MGpu(
+    url:
+        'https://huggingface.co/litert-community/SmolLM-135M-Instruct/resolve/main/SmolLM-135M-Instruct_multi-prefill-seq_q8_ekv1280.task',
+    filename: 'SmolLM-135M-Instruct_multi-prefill-seq_q8_ekv1280.task',
+    displayName: 'SmolLM 135M (GPU / Remote)',
+    licenseUrl: 'https://huggingface.co/litert-community/SmolLM-135M-Instruct',
+    needsAuth: false,
+    preferredBackend: PreferredBackend.gpu,
+    modelType: ModelType.general,
+    temperature: 0.2,
+    topK: 40,
+    topP: 0.9,
   );
 
   // Define fields for the enum
