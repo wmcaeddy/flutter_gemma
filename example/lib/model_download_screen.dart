@@ -81,10 +81,58 @@ class _ModelDownloadScreenState extends State<ModelDownloadScreen> {
   }
 
   Future<void> _deleteModel() async {
-    await _downloadService.deleteModel();
-    setState(() {
-      needToDownload = true;
-    });
+    // Show confirmation dialog before deleting
+    final bool? confirmed = await showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Confirm Delete'),
+          content: Text(
+            'Are you sure you want to delete "${widget.model.displayName}"?\n\n'
+            'This will remove ${widget.model.formattedSize} from your device and you will need to download it again to use this model.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              style: TextButton.styleFrom(foregroundColor: Colors.red),
+              child: const Text('Delete'),
+            ),
+          ],
+        );
+      },
+    );
+
+    // Only proceed with deletion if user confirmed
+    if (confirmed == true) {
+      try {
+        await _downloadService.deleteModel();
+        setState(() {
+          needToDownload = true;
+        });
+        
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('${widget.model.displayName} deleted successfully'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        }
+      } catch (e) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Failed to delete model'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      }
+    }
   }
 
   @override
@@ -232,7 +280,7 @@ class _ModelDownloadScreenState extends State<ModelDownloadScreen> {
                   : ElevatedButton(
                       onPressed:
                           !needToDownload ? _deleteModel : _downloadModel,
-                      child: Text(!needToDownload ? 'Delete' : 'Download'),
+                      child: Text(!needToDownload ? 'Delete' : 'Accept and Download'),
                     ),
             ),
             const Spacer(),
