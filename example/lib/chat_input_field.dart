@@ -11,10 +11,26 @@ class ChatInputField extends StatefulWidget {
 
 class ChatInputFieldState extends State<ChatInputField> {
   final TextEditingController _textController = TextEditingController();
+  bool _isProcessing = false;
 
   void _handleSubmitted(String text) {
-    widget.handleSubmitted(text);
+    if (text.trim().isEmpty || _isProcessing) return;
+    
+    setState(() {
+      _isProcessing = true;
+    });
+    
+    widget.handleSubmitted(text.trim());
     _textController.clear();
+    
+    // Reset processing state after a short delay
+    Future.delayed(const Duration(milliseconds: 500), () {
+      if (mounted) {
+        setState(() {
+          _isProcessing = false;
+        });
+      }
+    });
   }
 
   @override
@@ -23,20 +39,48 @@ class ChatInputFieldState extends State<ChatInputField> {
       data: IconThemeData(color: Theme.of(context).hoverColor),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: _isProcessing ? Colors.green.withValues(alpha: 0.5) : Colors.transparent,
+          ),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             Flexible(
-              child: TextField(
-                controller: _textController,
-                onSubmitted: _handleSubmitted,
-                decoration: const InputDecoration.collapsed(
-                  hintText: 'Send a message',
+              child: Container(
+                constraints: const BoxConstraints(
+                  minHeight: 96.0, // Double the typical height (48 * 2)
+                ),
+                child: TextField(
+                  controller: _textController,
+                  onSubmitted: _handleSubmitted,
+                  maxLines: null,
+                  keyboardType: TextInputType.multiline,
+                  textInputAction: TextInputAction.newline,
+                  enabled: !_isProcessing, // Disable during processing
+                  decoration: InputDecoration.collapsed(
+                    hintText: _isProcessing ? 'Processing...' : 'Send a message',
+                    hintStyle: TextStyle(
+                      color: _isProcessing ? Colors.orange : null,
+                    ),
+                  ),
                 ),
               ),
             ),
-            IconButton(
-              icon: const Icon(Icons.send),
-              onPressed: () => _handleSubmitted(_textController.text),
+            Container(
+              margin: const EdgeInsets.only(left: 8.0),
+              child: _isProcessing
+                  ? const SizedBox(
+                      width: 24,
+                      height: 24,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : IconButton(
+                      icon: const Icon(Icons.send),
+                      onPressed: () => _handleSubmitted(_textController.text),
+                    ),
             ),
           ],
         ),

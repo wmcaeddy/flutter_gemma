@@ -6,9 +6,9 @@ const modelPrefix = "model";
 const startTurn = "<start_of_turn>";
 const endTurn = "<end_of_turn>";
 
-const deepseekStart = "<｜begin▁of▁sentence｜>";
-const deepseekUser = "<｜User｜>";
-const deepseekAssistant = "<｜Assistant｜>";
+const deepseekStart = "<|begin_of_sentence|>";
+const deepseekUser = "<|User|>";
+const deepseekAssistant = "<|Assistant|>";
 
 extension MessageExtension on Message {
   String transformToChatPrompt({ModelType type = ModelType.general}) {
@@ -27,6 +27,10 @@ extension MessageExtension on Message {
         } else {
           return text;
         }
+
+      case ModelType.embedding:
+        // Embedding models don't generate text, so we return the input text as-is
+        return text;
     }
   }
-}
+} 

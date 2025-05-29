@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gemma_example/model_selection_screen.dart';
+import 'package:gemira/model_selection_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF0b2351),
       appBar: AppBar(
-        title: const Text('Flutter Gemma Example'),
+        title: const Text('Gemira'),
         backgroundColor: const Color(0xFF0b2351),
       ),
       body: Padding(
@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
             
             // Welcome text
             const Text(
-              'Welcome to Flutter Gemma',
+              'Welcome to Gemira',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,

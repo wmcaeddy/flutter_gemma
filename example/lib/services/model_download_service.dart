@@ -4,11 +4,13 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'downloaded_models_service.dart';
 
 class ModelDownloadService {
   final String modelUrl;
   final String modelFilename;
   final String licenseUrl;
+  final _downloadedModelsService = DownloadedModelsService();
 
   ModelDownloadService({
     required this.modelUrl,
@@ -109,6 +111,9 @@ class ModelDownloadService {
           // Update progress
           onProgress(totalBytes > 0 ? received / totalBytes : 0.0);
         }
+        
+        // Register the successful download
+        await _downloadedModelsService.addDownloadedModel(modelFilename);
       } else {
         if (kDebugMode) {
           print('Failed to download model. Status code: ${response.statusCode}');
@@ -141,6 +146,9 @@ class ModelDownloadService {
       if (file.existsSync()) {
         await file.delete();
       }
+      
+      // Remove from downloaded models list
+      await _downloadedModelsService.removeDownloadedModel(modelFilename);
     } catch (e) {
       if (kDebugMode) {
         print('Error deleting model: $e');

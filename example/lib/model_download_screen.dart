@@ -1,7 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gemma_example/chat_screen.dart';
-import 'package:flutter_gemma_example/services/model_download_service.dart';
+import 'package:flutter_gemma/pigeon.g.dart';
+import 'package:gemira/chat_screen.dart';
+import 'package:gemira/services/model_download_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'models/model.dart';
@@ -103,8 +104,49 @@ class _ModelDownloadScreenState extends State<ModelDownloadScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Download ${widget.model.name} Model',
+              'Download ${widget.model.displayName}',
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.3),
+                ),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.info_outline,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Model Information',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text('Expected download size: ${widget.model.formattedSize}'),
+                        Text('Backend: ${widget.model.preferredBackend == PreferredBackend.gpu ? 'GPU' : 'CPU'}'),
+                        if (widget.model.needsAuth)
+                          Text(
+                            'Authentication required',
+                            style: TextStyle(color: Colors.orange.shade700),
+                          ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
             if (widget
                 .model.needsAuth) // Show token input only if auth is required

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10D7E2;stop-opacity:1" />
+      <stop offset="25%" style="stop-color:#4F9CF9;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8B5DFF;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#C44BCF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E91E63;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background with gradient -->
+  <rect width="1024" height="1024" fill="url(#gradient)" rx="180" ry="180"/>
+  
+  <!-- Letter G -->
+  <path d="M200 300 Q200 200 300 200 L600 200 Q700 200 700 300 L700 450 L550 450 L550 350 L600 350 L600 300 L300 300 Q250 300 250 350 L250 650 Q250 700 300 700 L600 700 Q650 700 650 650 L650 550 L500 550 L500 450 L750 450 L750 650 Q750 750 650 750 L300 750 Q200 750 200 650 Z" 
+        fill="white" 
+        stroke="none"/>
+</svg> 

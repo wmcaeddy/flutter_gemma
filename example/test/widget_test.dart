@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_gemma_example/main.dart';
+import 'package:gemira/main.dart';
 
 void main() {
   testWidgets('Verify Platform version', (WidgetTester tester) async {

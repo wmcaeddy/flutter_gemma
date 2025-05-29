@@ -1,0 +1,49 @@
+LOCAL LLM - App Store Metadata Template
+
+=== APP NAME ===
+Local LLM
+
+=== SUBTITLE ===
+AI Chat with On-Device Models
+
+=== DESCRIPTION ===
+Local LLM brings powerful AI chat capabilities directly to your device with complete privacy. Chat with advanced language models that run entirely on your iPhone - no internet connection required for inference.
+
+Features:
+• Multiple AI Models: Choose from Gemma, DeepSeek, SmolLM, Qwen, and more
+• Complete Privacy: All processing happens on your device
+• Offline Capable: No internet required once models are downloaded  
+• CPU & GPU Support: Optimized for your device's capabilities
+• Clean Interface: Simple, intuitive chat experience
+• Model Management: Easy download and selection of AI models
+
+Perfect for:
+- Private conversations with AI
+- Learning and experimentation
+- Offline AI assistance
+- Developers and researchers
+- Privacy-conscious users
+
+Your conversations stay on your device. No data is sent to external servers during chat sessions.
+
+=== KEYWORDS ===
+AI,chat,LLM,privacy,offline,Gemma,local,machine learning,neural network,assistant
+
+=== PROMOTIONAL TEXT ===
+Experience the future of private AI chat. Powerful language models running entirely on your device.
+
+=== PRIVACY POLICY NOTES ===
+- App downloads AI models from Hugging Face (internet required for download only)
+- No personal data or conversations are transmitted to external servers
+- All AI processing happens locally on device
+- Optional analytics may be collected (specify if you add analytics)
+
+=== CATEGORY ===
+Primary: Productivity
+Secondary: Developer Tools
+
+=== AGE RATING ===
+4+ (or higher if needed based on content policies)
+
+=== PRICING ===
+Free (or paid - your choice) 
