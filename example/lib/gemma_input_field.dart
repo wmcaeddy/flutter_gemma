@@ -153,7 +153,7 @@ class OptimizedChatMessage extends StatelessWidget {
             children: [
               CircleAvatar(
                 backgroundColor: Colors.transparent, 
-                foregroundImage: const AssetImage('assets/gemma.png'),
+                foregroundImage: const AssetImage('assets/gemira.png'),
                 radius: 16,
               ),
               if (isStreaming)

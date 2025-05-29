@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             const Text(
-              'Explore powerful AI models including Gemma 3 Nano running directly on your device',
+              'Explore powerful AI models running directly on your device for private and secure conversations',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.white70,
@@ -49,8 +49,8 @@ class HomeScreen extends StatelessWidget {
             // Navigation card
             _buildNavigationCard(
               context,
-              title: 'All Models',
-              subtitle: 'Browse and test all available Gemma models',
+              title: 'AI Models',
+              subtitle: 'Browse and test available language models',
               icon: Icons.model_training,
               color: Colors.blue,
               onTap: () {

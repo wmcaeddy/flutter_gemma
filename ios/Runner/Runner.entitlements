@@ -4,7 +4,6 @@
 <dict>
 	<key>com.apple.developer.kernel.extended-virtual-addressing</key>
 	<true/>
-	<true/>
 	<key>com.apple.developer.kernel.increased-memory-limit</key>
 	<true/>
 	<key>com.apple.security.app-sandbox</key>
@@ -12,4 +11,4 @@
 	<key>com.apple.security.files.user-selected.read-only</key>
 	<true/>
 </dict>
-</plist>
+</plist> 
