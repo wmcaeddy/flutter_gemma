@@ -186,6 +186,35 @@ enum Model {
     temperature: 0.2,
     topK: 40,
     topP: 0.9,
+  ),
+
+  // Qwen2.5-0.5B - Small but capable model
+  qwen25_05BCpu(
+    url:
+        'https://huggingface.co/litert-community/Qwen2.5-0.5B-Instruct/resolve/main/Qwen2.5-0.5B-Instruct_multi-prefill-seq_q8_ekv1280.task',
+    filename: 'Qwen2.5-0.5B-Instruct_multi-prefill-seq_q8_ekv1280.task',
+    displayName: 'Qwen2.5 0.5B (CPU / Remote)',
+    licenseUrl: 'https://huggingface.co/litert-community/Qwen2.5-0.5B-Instruct',
+    needsAuth: false,
+    preferredBackend: PreferredBackend.cpu,
+    modelType: ModelType.general,
+    temperature: 0.7,
+    topK: 50,
+    topP: 0.9,
+  ),
+
+  qwen25_05BGpu(
+    url:
+        'https://huggingface.co/litert-community/Qwen2.5-0.5B-Instruct/resolve/main/Qwen2.5-0.5B-Instruct_multi-prefill-seq_q8_ekv1280.task',
+    filename: 'Qwen2.5-0.5B-Instruct_multi-prefill-seq_q8_ekv1280.task',
+    displayName: 'Qwen2.5 0.5B (GPU / Remote)',
+    licenseUrl: 'https://huggingface.co/litert-community/Qwen2.5-0.5B-Instruct',
+    needsAuth: false,
+    preferredBackend: PreferredBackend.gpu,
+    modelType: ModelType.general,
+    temperature: 0.7,
+    topK: 50,
+    topP: 0.9,
   );
 
   // Define fields for the enum
