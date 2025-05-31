@@ -163,27 +163,95 @@ class ChatScreenState extends State<ChatScreen> {
           );
         },
       ),
-      title: const Text(
-        'Gemira Chat',
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Gemira Chat',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+          ),
+          Text(
+            widget.model.displayName,
+            style: const TextStyle(fontSize: 12, color: Colors.white70),
+          ),
+        ],
       ),
       actions: [
-        if (_messages.isNotEmpty)
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            tooltip: 'Clear chat',
-            onPressed: () async {
-              if (chat != null) {
-                await chat!.clearHistory();
-                setState(() {
-                  _messages.clear();
-                  _error = null;
-                });
-              }
-            },
-          ),
+        IconButton(
+          icon: const Icon(Icons.refresh_rounded),
+          tooltip: 'New Session',
+          onPressed: () => _showResetConfirmationDialog(),
+        ),
       ],
     );
+  }
+
+  void _showResetConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Start New Session'),
+          content: const Text(
+            'This will clear all chat history and start a fresh conversation. Are you sure?',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                _resetSession();
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF0b2351),
+              ),
+              child: const Text('Start New Session'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _resetSession() async {
+    try {
+      // Show loading indicator
+      setState(() {
+        _isAiTyping = true;
+        _error = null;
+      });
+
+      // Clear chat history and memory
+      if (chat != null) {
+        await chat!.clearHistory();
+      }
+
+      // Clear messages and reset state
+      setState(() {
+        _messages.clear();
+        _error = null;
+        _isAiTyping = false;
+      });
+
+      // Show success feedback
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('New session started successfully!'),
+            duration: Duration(seconds: 2),
+            backgroundColor: Colors.green,
+          ),
+        );
+      }
+    } catch (e) {
+      setState(() {
+        _error = 'Failed to reset session: $e';
+        _isAiTyping = false;
+      });
+    }
   }
 
   Widget _buildErrorBanner(String errorMessage) {

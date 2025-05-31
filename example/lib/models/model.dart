@@ -32,6 +32,38 @@ enum Model {
     topK: 40,
     topP: 0.9,
     downloadSizeBytes: 500000000, // ~500MB
+  ),
+
+  // SmolLM-135M-Instruct (~167MB) - CPU variant  
+  smolLM135MCpu(
+    url:
+        'https://huggingface.co/litert-community/SmolLM-135M-Instruct/resolve/main/SmolLM-135M-Instruct_multi-prefill-seq_q8_ekv1280.task',
+    filename: 'SmolLM-135M-Instruct_multi-prefill-seq_q8_ekv1280.task',
+    displayName: 'SmolLM 135M Instruct (CPU)',
+    licenseUrl: 'https://huggingface.co/HuggingFaceTB/SmolLM-135M-Instruct',
+    needsAuth: false,
+    preferredBackend: PreferredBackend.cpu,
+    modelType: ModelType.general,
+    temperature: 0.2,
+    topK: 40,
+    topP: 0.9,
+    downloadSizeBytes: 167000000, // ~167MB
+  ),
+  
+  // SmolLM-135M-Instruct (~167MB) - GPU variant
+  smolLM135MGpu(
+    url:
+        'https://huggingface.co/litert-community/SmolLM-135M-Instruct/resolve/main/SmolLM-135M-Instruct_multi-prefill-seq_q8_ekv1280.task',
+    filename: 'SmolLM-135M-Instruct_multi-prefill-seq_q8_ekv1280.task',
+    displayName: 'SmolLM 135M Instruct (GPU)',
+    licenseUrl: 'https://huggingface.co/HuggingFaceTB/SmolLM-135M-Instruct',
+    needsAuth: false,
+    preferredBackend: PreferredBackend.gpu,
+    modelType: ModelType.general,
+    temperature: 0.2,
+    topK: 40,
+    topP: 0.9,
+    downloadSizeBytes: 167000000, // ~167MB
   );
 
   const Model({
